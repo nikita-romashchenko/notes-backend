@@ -6,7 +6,7 @@ interface LooseRequest extends Request {
   [key: string]: any;
 }
 
-function authenticateToken(req: LooseRequest, res: Response, next: any) {
+export function authenticateToken(req: LooseRequest, res: Response, next: any) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) {
@@ -24,5 +24,3 @@ function authenticateToken(req: LooseRequest, res: Response, next: any) {
     }
   );
 }
-
-module.exports = authenticateToken;
