@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
 import { Secret, GetPublicKeyOrSecret } from "jsonwebtoken";
 
-interface LooseRequest extends Request {
+interface RequestWithUser extends Request {
   [key: string]: any;
 }
 
-export function authenticateToken(req: LooseRequest, res: Response, next: any) {
+function authenticateToken(req: RequestWithUser, res: Response, next: any) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) {
@@ -24,3 +24,5 @@ export function authenticateToken(req: LooseRequest, res: Response, next: any) {
     }
   );
 }
+
+export { authenticateToken, RequestWithUser };

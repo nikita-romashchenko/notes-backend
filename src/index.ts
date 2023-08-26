@@ -4,22 +4,29 @@ import { connect } from "mongoose";
 import bodyParser from "body-parser";
 
 //import routes
-import { router as authRoute } from "./modules/auth/auth.router";
+import { authRoute } from "./modules/auth/auth.router";
+import { notesRoute } from "./modules/notes/notes.router";
 
+//Load .env file to process.env
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
 
+//Apply Middlewares
 app.use(bodyParser.json());
 
+//Apply Routes
 app.use("/auth", authRoute);
+app.use("/notes", notesRoute);
 
+//Connect to DB
 const connectMongoDB = async () =>
   await connect("mongodb://127.0.0.1:27017/notesAppDb");
 
 connectMongoDB();
 
+//Home Route
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server :)");
 });
