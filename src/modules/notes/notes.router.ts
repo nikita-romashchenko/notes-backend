@@ -8,7 +8,7 @@ router.get("/", authenticateToken, NotesController.getAllNotes);
 
 router.post("/note", authenticateToken, NotesController.createNote);
 
-router.get("/note", authenticateToken, NotesController.getNote);
+// router.get("/note", authenticateToken, NotesController.getNote);
 
 router.put("/note", authenticateToken, NotesController.updateNote);
 
