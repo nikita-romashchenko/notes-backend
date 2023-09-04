@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
-import { run } from "node:test";
 
-interface INote {
+interface Note {
   owner_uuid: string;
   uuid: string;
   text: string;
 }
 
-const NoteSchema = new mongoose.Schema<INote>({
+const NoteSchema = new mongoose.Schema<Note>({
   owner_uuid: {
     type: String,
     required: true,
@@ -22,6 +21,4 @@ const NoteSchema = new mongoose.Schema<INote>({
   },
 });
 
-const Note = mongoose.model<INote>("Notes", NoteSchema);
-
-export { Note };
+export const Note = mongoose.model<Note>("Notes", NoteSchema);

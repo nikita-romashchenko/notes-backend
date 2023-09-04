@@ -10,6 +10,7 @@ import { notesRoute } from "./modules/notes/notes.router";
 //Load .env file to process.env
 dotenv.config();
 
+//Create an Express application
 const app: Express = express();
 const port = process.env.PORT;
 
