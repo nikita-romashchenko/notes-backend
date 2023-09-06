@@ -14,7 +14,7 @@ function authenticateToken(req: RequestWithUser, res: Response, next: any) {
   if (token == null) {
     return res.sendStatus(HttpStatusCode.UNAUTHORIZED);
   }
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as Secret, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET as Secret, (err, user) => {
     if (err) {
       return res.sendStatus(HttpStatusCode.UNAUTHORIZED);
     }

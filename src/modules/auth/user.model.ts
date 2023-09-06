@@ -4,13 +4,13 @@ interface User {
   uuid: string;
   username: string;
   passwordHash: string;
-  accessToken: string;
 }
 
 const UserSchema = new mongoose.Schema<User>({
   uuid: {
     type: String,
     required: true,
+    unique: true,
   },
   username: {
     type: String,

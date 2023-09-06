@@ -12,7 +12,10 @@ dotenv.config();
 
 //Create an Express application
 const app: Express = express();
-const port = process.env.PORT;
+const port =
+  process.env.STATUS === "production"
+    ? process.env.PROD_PORT
+    : process.env.DEV_PORT;
 
 //Apply Middlewares
 app.use(bodyParser.json());

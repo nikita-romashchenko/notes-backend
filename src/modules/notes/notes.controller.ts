@@ -2,9 +2,10 @@ import { Request, Response } from "express";
 import { RequestWithUser } from "../../middlewares/authentication";
 import { Note } from "./note.model";
 import { HttpStatusCode } from "../../utils/constants";
+import { v4 as uuidv4 } from "uuid";
 
 const getAllNotes = async (req: RequestWithUser, res: Response) => {
-  const filter = { owner_uuid: req.user.uuid };
+  const filter = { owner_uuid: req.user.subject };
 
   try {
     const notes = await Note.find(filter);
@@ -17,12 +18,12 @@ const getAllNotes = async (req: RequestWithUser, res: Response) => {
 
 const createNote = async (req: RequestWithUser, res: Response) => {
   const { user } = req;
-  const { uuid, text } = req.body;
+  const { text } = req.body;
 
   try {
     const createdNote = await Note.create({
-      owner_uuid: user.uuid,
-      uuid: uuid,
+      owner_uuid: user.subject,
+      uuid: uuidv4(),
       text: text,
     });
     res.send(createdNote);
