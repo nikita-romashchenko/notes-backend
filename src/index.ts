@@ -1,4 +1,5 @@
 import express, { Express, Request, Response } from "express";
+import * as cors from "cors";
 import dotenv from "dotenv";
 import { connect } from "mongoose";
 import bodyParser from "body-parser";
@@ -18,6 +19,7 @@ const port =
     : process.env.DEV_PORT;
 
 //Apply Middlewares
+app.use(cors.default());
 app.use(bodyParser.json());
 
 //Apply Routes
